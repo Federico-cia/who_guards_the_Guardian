@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs / scheduler output
+*.out
+*.err
+logs/
+out/
+err/
+slurm-*.out
+
+# Full/raw datasets and large intermediates
+*.parquet
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.model
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+
+# Model/tokenizer/checkpoint directories
+guardian_electra_tokenizer/
+guardian_electra_small*/
+guardian_electra_mnli/
+checkpoint-*/
+embedding_chunks/
+output_bge_base/
+
+# Private annotation workbooks containing full Guardian article text
+manual_annotation_60.xlsx
+manual_annotation_8000*.xlsx
+
+# Keep the small committed bias-probe workbook even though xlsx may otherwise be used locally
+!data/bias_probe/electra_nli_nationality_bias_probe_revised_finnish.xlsx
