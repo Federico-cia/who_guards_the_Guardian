@@ -131,6 +131,35 @@ python -m spacy download en_core_web_sm
 
 GPU-enabled PyTorch should be installed according to the CUDA configuration of the machine or HPC cluster.
 
+## Reproduction
+
+The main stages should be reproduced in the following order:
+
+1. **Preprocess the Guardian corpus**
+   - Run `scripts/preprocessing/lemmatize_guardian.py`
+   - HPC launcher: `hpc/preprocessing/lemmatize_guardian.sh`
+
+2. **Compute article-level classification signals**
+   - Zero-shot scores: `scripts/classification/zero_shot_guardian.py`
+   - Word2Vec training: `scripts/classification/guardian_w2v.py`
+   - Article embeddings: `scripts/classification/embed_articles_bge.py`
+   - Lexicon scoring, annotation-set construction, and logistic regression are documented in the final notebook.
+
+3. **Train the bias-detection model**
+   - Train the tokenizer: `scripts/bias/train_tokenizer.py`
+   - Pretrain ELECTRA: `scripts/bias/pretrain_electra.py`
+   - Fine-tune on MultiNLI: `scripts/bias/finetune_mnli.py`
+   - Evaluate the nationality bias probe: `scripts/bias/evaluate_bias_probe.py`
+
+4. **Build the RAG retrieval assets**
+   - Create chunks and dense embeddings with `scripts/rag/chunks_embedding_full_pipeline.py`
+   - Build BM25 assets with `scripts/rag/bm25_assets_parallel.py`
+
+5. **Run the final analysis and RAG workflow**
+   - See `notebooks/NLP_Project_Final.ipynb`
+
+Large input datasets, model checkpoints, embedding matrices, and retrieval indexes are not included in the repository and must be generated or supplied separately.
+
 ## Reproducibility notes
 
 The notebook was originally developed in Google Colab and therefore contains Google Drive paths such as `/content/drive/MyDrive/NLP_project/...`. The standalone scripts are more suitable for reproducing the heavy stages because they accept command-line inputs or use the accompanying HPC launchers.
