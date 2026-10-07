@@ -18,6 +18,18 @@ The project asks whether nationality and immigration are disproportionately emph
 2. **Bias detection** — probe whether a Guardian-pretrained ELECTRA model treats nationality substitutions as inferentially relevant in otherwise neutral sentence pairs.
 3. **RAG** — retrieve and synthesize Guardian passages so users can inspect how the newspaper discussed a topic.
 
+## Results at a glance
+
+### Crime and immigration coverage over time
+
+![Crime and immigration coverage](docs/figures/topic_coverage_crime_immigration.png)
+
+### Final article classification
+
+![Crime vs immigration classification](docs/figures/final_classification_venn.png)
+
+![Article categories over time](docs/figures/final_classification_over_time.png)
+
 ## Pipeline
 
 ### 1. Exploratory data analysis
